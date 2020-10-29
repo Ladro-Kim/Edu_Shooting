@@ -22,7 +22,8 @@ public class PlayerHP : MonoBehaviour
     
     public int Hp {
         get { return curHp; }
-        set { curHp = value; hpSlider.value = curHp; } }
+        set { curHp = value; hpSlider.value = curHp; }
+    }
 
 
     // Start is called before the first frame update

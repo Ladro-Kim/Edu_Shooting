@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curHp = maxHp;
         // 태어날 때 방향을 정하고 싶다.
         // 30% 확률로 플레이어를, 그 외에는 아래방향으로.
         // 10개의 숫자 범위를 만들고
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
         // 살아가면서 그 방향으로 이동하고 싶다.
         // transform.LookAt(dir);
         transform.position += dir * speed * Time.deltaTime;
+
 
         // transform.Rotate(Quaternion.Euler(0, 0, 10f));
         // transform.Rotate(new Vector3(0, 0, 20f) * Time.deltaTime);
@@ -101,13 +103,52 @@ public class Enemy : MonoBehaviour
             ++sm.Score;
         }
 
-        Destroy(gameObject); // transform 처럼 gameObject 도 그냥 가져와짐. -> 내꺼는 그냥 쓰면 됨.
+        curHp--;
+        if (curHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            StopCoroutine(ieHit());
+            StartCoroutine(ieHit());
+        }
+
+         // transform 처럼 gameObject 도 그냥 가져와짐. -> 내꺼는 그냥 쓰면 됨.
 
         // transform.rotation = Quaternion.Slerp()
 
         Debug.Log("OnCollision");
-        
-
     }
+
+    // 2방을 맞으면 터지고 싶다.
+    // 1방 부딛히면 번쩍 거리고 (Mesh Renderer -> Material -> 
+
+
+    // 2번 부딛히면 터지고 싶다. 
+    // 현재체력
+    // 최대체력
+
+    int curHp = 0;
+    public int maxHp = 2;
+
+    public MeshRenderer bodyRenderer; // 게임 오브젝트 연결하면 오브젝트의 렌더러를 그대로 가져옴.
+
+    IEnumerator ieHit()
+    {
+        Material mat = bodyRenderer.material;
+
+        Color originColor = mat.GetColor("_EmissionColor");
+
+        // 하얗게 만들었다가
+        mat.SetColor("_EmissionColor", Color.white);
+
+        // 0.1초 후
+        yield return new WaitForSeconds(0.1f);
+
+        // 원래 색으로 복구하고싶다.
+        mat.SetColor("_EmissionColor", originColor);
+    }
+
 
 }

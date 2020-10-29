@@ -55,12 +55,25 @@ public class SpawnManager : MonoBehaviour
 
         if (currentTime >= spawnTime)
         {
-            GameObject enemy = GameObject.Instantiate(enemyPref);
+            // 만약 게임오버가 되지 않았다면.
+            // 방법1. 플레이어가 존재한다면
+            //         -> 플레이어 게임오브젝트를 찾은 후에 그것이 Null 이 아니라면,
+            // 방법2. GameOverUi 가 꺼져있다면
+            if (GameObject.Find("Player") != null)
+            {
+                GameObject enemy = GameObject.Instantiate(enemyPref);
 
-            enemy.transform.position = spawnList[latestChoose].transform.position;
-            // Destroy(enemy, 10);
-            currentTime = 0;
-            spawnTime = Random.Range(1, spawnList.Length);
+                enemy.transform.position = spawnList[latestChoose].transform.position;
+                // Destroy(enemy, 10);
+                currentTime = 0;
+                spawnTime = Random.Range(1, spawnList.Length);
+            }
+
+            if (GameManager.instance.gameOverUi.activeSelf == false)
+            {
+
+            }
+
         }
     }
 }

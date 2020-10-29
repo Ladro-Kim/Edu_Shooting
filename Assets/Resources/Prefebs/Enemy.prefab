@@ -112,6 +112,8 @@ MonoBehaviour:
   speed: 5
   target: {fileID: 0}
   explosion: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+  maxHp: 2
+  bodyRenderer: {fileID: 1427918273331352803}
 --- !u!82 &6304988123139361617
 AudioSource:
   m_ObjectHideFlags: 0
@@ -339,11 +341,21 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.70655197
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: bd16a121ccdf0674daacc3277d88c3c0, type: 3}
+      propertyPath: engenOn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd16a121ccdf0674daacc3277d88c3c0, type: 3}
 --- !u!4 &1427918273329059331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bd16a121ccdf0674daacc3277d88c3c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1427918273329450115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1427918273331352803 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: bd16a121ccdf0674daacc3277d88c3c0,
     type: 3}
   m_PrefabInstance: {fileID: 1427918273329450115}
   m_PrefabAsset: {fileID: 0}
