@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         curHp = maxHp;
+
         // 태어날 때 방향을 정하고 싶다.
         // 30% 확률로 플레이어를, 그 외에는 아래방향으로.
         // 10개의 숫자 범위를 만들고
@@ -45,6 +46,10 @@ public class Enemy : MonoBehaviour
         {
             dir = Vector3.down;
         }
+        // 나의 아래 방향이 이동방향이 되게 하고싶다.
+        // -> 나의 윗 방향이 아래방향이 되게 하고싶다.
+        transform.up = -dir;
+        // transform.LookAt(dir);
 
     }
 
@@ -52,7 +57,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // 살아가면서 그 방향으로 이동하고 싶다.
-        // transform.LookAt(dir);
+
         transform.position += dir * speed * Time.deltaTime;
 
 
@@ -85,6 +90,7 @@ public class Enemy : MonoBehaviour
                 return;
             }
 
+            curHp--;
             --playerHp.Hp;
 
             if (playerHp.Hp <= 0)
@@ -100,12 +106,16 @@ public class Enemy : MonoBehaviour
 
             // 클레스에 바로 접근하는 것이 아니고 게임 오브젝트의 컴포넌트를 가져와서 사용!!
             ScoreManager sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-            ++sm.Score;
+
+            curHp -= GameManager.instance.bulletPower;
+            // curHp -= other.gameObject.GetComponent<Bullet>().bulletPower;
+
         }
 
-        curHp--;
         if (curHp <= 0)
         {
+            ScoreManager.instance.Score++;
+            GameManager.instance.KillCount++;
             Destroy(gameObject);
         }
         else
@@ -118,7 +128,6 @@ public class Enemy : MonoBehaviour
 
         // transform.rotation = Quaternion.Slerp()
 
-        Debug.Log("OnCollision");
     }
 
     // 2방을 맞으면 터지고 싶다.

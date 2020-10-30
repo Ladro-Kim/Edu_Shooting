@@ -41,9 +41,5 @@ public class EnemyManager : MonoBehaviour
             currentTime = 0;
             spawnTime = Random.Range(randomMin, randomMax);
         }
-        
-        
-
-
     }
 }

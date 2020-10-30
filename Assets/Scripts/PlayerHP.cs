@@ -21,8 +21,13 @@ public class PlayerHP : MonoBehaviour
     int curHp;
     
     public int Hp {
-        get { return curHp; }
-        set { curHp = value; hpSlider.value = curHp; }
+        get { 
+            return curHp;
+        }
+        set { 
+            curHp = value; 
+            hpSlider.value = curHp;
+        }
     }
 
 

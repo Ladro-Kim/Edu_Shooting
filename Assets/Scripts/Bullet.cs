@@ -9,11 +9,12 @@ public class Bullet : MonoBehaviour
 {
 
     public float speed = 5f;
+    public int bulletPower;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletPower = 1;
     }
 
     // Update is called once per frame

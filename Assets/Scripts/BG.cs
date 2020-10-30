@@ -13,7 +13,18 @@ public class BG : MonoBehaviour
     MeshRenderer mr;
     Material mt;
 
-    public float speed = 0.2f;
+    float speed = 0.1f;
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+        set
+        {
+            speed = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +38,6 @@ public class BG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mt.mainTextureOffset += Vector2.up * speed * Time.deltaTime;
+        mt.mainTextureOffset += Vector2.up * Speed * Time.deltaTime;
     }
 }
